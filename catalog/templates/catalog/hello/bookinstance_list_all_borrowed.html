@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>All borrowed Books List</h1>
+  <ul>
+    {% for copy in book.bookinstance_set.all %}
+      <hr>
+      {% if copy.status == 'o' %}
+        <p><strong>Title</strong> {{copy.title}}</p>
+        <p><strong>Imprint:</strong> {{copy.imprint}}</p>
+        <p class="text-muted"><strong>Id:</strong> <a href="{{ copy.get_absolute_url }}">{{ copy.id }}</a></p>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no books in the library.</p>
+  {% endif %}       
+{% endblock %}
